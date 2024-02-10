@@ -8,12 +8,15 @@ import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import org.junit.*;
+import steps.IngredientSteps;
 import steps.OrderSteps;
 import steps.UserSteps;
 
+import java.util.List;
+
 public class GetOrdersTests {
     private static final User USER = User.randomTestUser();
-    private static final Order ORDER = new Order(TestData.TEST_BURGER_INGREDIENTS);
+    private static final Order ORDER = new Order();
     private static String accessToken;
 
     @BeforeClass
@@ -22,6 +25,9 @@ public class GetOrdersTests {
         UserResponse userResponse = UserSteps.createUser(USER, 200);
         Assert.assertTrue("Запрос должен выполниться успешно", userResponse.getSuccess());
         accessToken = userResponse.getAccessToken();
+        String ingredientHash = IngredientSteps.getIngredientHash()
+                .getByName(TestData.TEST_INGREDIENT_NAME).get_id();
+        ORDER.setIngredients(List.of(ingredientHash));
     }
 
     @Test

@@ -13,6 +13,6 @@ public class TestData {
     public static final String INCORRECT_LOGIN = "111";
     public static final String INCORRECT_PASSWORD = "123";
     public static final String TEST_BURGER_NAME = "Краторный бургер";
-    public static final List<String> TEST_BURGER_INGREDIENTS = List.of("61c0c5a71d1f82001bdaaa6c");
+    public static final String TEST_INGREDIENT_NAME = "Краторная булка N-200i";
     public static final List<String> INCORRECT_HASH_INGREDIENTS = List.of("111");
 }
